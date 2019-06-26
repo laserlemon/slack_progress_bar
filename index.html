@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Slack Progress Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/primer/build/build.css">
+    <style>
+      .progress-bar {
+        display: inline-block;
+        white-space: nowrap;
+        background-image:
+          linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+          linear-gradient(135deg, #f0f0f0 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+          linear-gradient(135deg, transparent 75%, #f0f0f0 75%);
+        background-size: 8px 8px;
+        background-position: 0 0, 4px 0, 4px -4px, 0px 4px;
+      }
+      .stripe {
+        float: left;
+        width: 8px;
+        height: 20px;
+        background: transparent;
+        background-clip: content-box;
+        margin: 6px 0;
+      }
+      .progress-bar.rounded > .stripe:first-child {
+        width: 10px;
+        margin: 6px 0 6px 22px;
+        border-radius: 10px 0 0 10px;
+      }
+      .progress-bar.rounded > .stripe:last-child {
+        width: 10px;
+        margin: 6px 22px 6px 0;
+        border-radius: 0 10px 10px 0;
+      }
+      textarea.form-control {
+        min-width: 0 !important;
+        width: inherit !important;
+        min-height: 0 !important;
+        height: inherit !important;
+      }
+    </style>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <div class="d-flex flex-column p-4">
+      <h1 class="pb-4">Slack Progress Bar</h1>
+      <div class="pb-4">
+        <h2 class="pb-2">Configuration</h2>
+        <div>
+          <div class="pb-2">
+            <label for="colors" class="text-normal">Add 6-digit hex colors and their individual progress below:</label>
+          </div>
+          <div>
+            <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8">6f42c1
+0366d6
+28a745
+ffd33d
+f66a0a
+d73a49
+e1e4e8</textarea>
+            <textarea class="js-counts form-control text-mono text-right" cols="4" rows="8">1
+1
+2
+3
+5
+8
+13</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4">
+        <h2 class="pb-2">Preview</h2>
+        <div>
+          <span class="text-bold">Colors:</span>
+          <span class="js-color-count"></span>
+        </div>
+        <div>
+          <span class="text-bold">Images:</span>
+          <span class="js-image-count"></span>
+        </div>
+        <div class="py-2">
+          <h3>Rounded</h3>
+          <div class="progress-bar rounded clearfix">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+          </div>
+        </div>
+        <div>
+          <h3>Squared</h3>
+          <div class="progress-bar squared clearfix">
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+            <div class="stripe"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4">
+        <h2 class="pb-2">Command</h2>
+        <div class="pb-2">
+          Run the following command to generate the <span class="js-image-count"></span> emoji images.
+          You may change the <span class="text-mono bg-gray border rounded-1 p-1 my-n1">--letters</span> to better represent your chosen colors.
+        </div>
+        <div class="text-mono bg-gray-dark text-white p-3 rounded-2 no-wrap overflow-auto">
+          <span class="text-gray-light user-select-none pr-1">$ </span>
+          <span class="js-command"></span>
+        </div>
+      </div>
+    </div>
+    <script>
+      const colorPattern = /[0-9a-f]{6}/gm;
+      const countPattern = /[0-9]+/gm;
+
+      var colors = [];
+      var counts = [];
+
+      const $colors = $(".js-colors");
+      const $counts = $(".js-counts");
+      const $colorCount = $(".js-color-count");
+      const $imageCount = $(".js-image-count");
+
+      const $command = $(".js-command");
+
+      const countImages = function() {
+        if (colors.length == 0) {
+          return 0;
+        }
+
+        var count = 1;
+        for (var i = 1; i < colors.length; i++) {
+          count = count * (i + 4) / (i);
+        }
+
+        return count;
+      };
+
+      const refresh = function() {
+        colors = $colors.val().match(colorPattern);
+        counts = ($counts.val().match(countPattern) || []).map(count => parseInt(count));
+
+        $colorCount.text(colors.length);
+        $imageCount.text(countImages());
+
+        var roundedStripeCount = $(".progress-bar.rounded > .stripe").length;
+        var squaredStripeCount = $(".progress-bar.squared > .stripe").length;
+
+        var total = colors.reduce(function(memo, _color, index) {
+          return memo + (counts[index] || 0);
+        }, 0);
+
+        var runningTotal = 0;
+        var lastRoundedIndex = 0;
+        var lastSquaredIndex = 0;
+        var letters = []
+
+        $(".progress-bar > .stripe").css("background", "none");
+
+        colors.forEach(function(color, index) {
+          var count = counts[index];
+
+          if (count && color) {
+            runningTotal = runningTotal + count;
+
+            var roundedIndex = Math.floor(runningTotal / total * roundedStripeCount);
+            var squaredIndex = Math.floor(runningTotal / total * squaredStripeCount);
+
+            if (roundedIndex > lastRoundedIndex) {
+              $(".progress-bar.rounded > .stripe").slice(lastRoundedIndex, roundedIndex).css("background", "#" + color);
+            }
+
+            if (squaredIndex > lastSquaredIndex) {
+              $(".progress-bar.squared > .stripe").slice(lastSquaredIndex, squaredIndex).css("background", "#" + color);
+            }
+
+            lastRoundedIndex = roundedIndex;
+            lastSquaredIndex = squaredIndex;
+          }
+
+          letters.push(String.fromCharCode(index + 97));
+        });
+
+        var command = "slack_progress_bar generate --colors=" +
+          colors.join(",") +
+          " --letters=" +
+          letters.join(",")
+
+        $command.text(command);
+      };
+
+      refresh();
+      $colors.on("input change", refresh);
+      $counts.on("input change", refresh);
+    </script>
+  </body>
+</html>
