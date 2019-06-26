@@ -52,7 +52,7 @@
           <div class="pb-2">
             <label for="colors" class="text-normal">Add 6-digit hex colors and their individual progress below:</label>
           </div>
-          <div>
+          <div class="pb-2">
             <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8">6f42c1
 0366d6
 28a745
@@ -68,6 +68,12 @@ e1e4e8</textarea>
 8
 13</textarea>
           </div>
+          <div class="pb-2">
+            <label for="colors" class="text-normal">Change the slider size (in emoji) below:</label>
+          </div>
+          <div>
+            <input type="range" min="3" max="30" value="14" class="js-size">
+          </div>
         </div>
       </div>
       <div class="pb-4">
@@ -80,121 +86,17 @@ e1e4e8</textarea>
           <span class="text-bold">Images:</span>
           <span class="js-image-count"></span>
         </div>
+        <div>
+          <span class="text-bold">Size:</span>
+          <span class="js-size-value"></span>
+        </div>
         <div class="py-2">
           <h3>Rounded</h3>
-          <div class="progress-bar rounded clearfix">
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-          </div>
+          <div class="progress-bar rounded clearfix"></div>
         </div>
         <div>
           <h3>Squared</h3>
-          <div class="progress-bar squared clearfix">
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-          </div>
+          <div class="progress-bar squared clearfix"></div>
         </div>
       </div>
       <div class="pb-4">
@@ -213,17 +115,16 @@ e1e4e8</textarea>
       const colorPattern = /[0-9a-f]{6}/gm;
       const countPattern = /[0-9]+/gm;
 
-      var colors = [];
-      var counts = [];
-
       const $colors = $(".js-colors");
       const $counts = $(".js-counts");
+      const $size = $(".js-size");
       const $colorCount = $(".js-color-count");
       const $imageCount = $(".js-image-count");
+      const $sizeValue = $(".js-size-value");
 
       const $command = $(".js-command");
 
-      const countImages = function() {
+      const countImages = function(colors) {
         if (colors.length == 0) {
           return 0;
         }
@@ -237,14 +138,30 @@ e1e4e8</textarea>
       };
 
       const refresh = function() {
-        colors = $colors.val().match(colorPattern);
-        counts = ($counts.val().match(countPattern) || []).map(count => parseInt(count));
+        var colors = $colors.val().match(colorPattern);
+        var counts = ($counts.val().match(countPattern) || []).map(count => parseInt(count));
+        var size = $size.val();
 
         $colorCount.text(colors.length);
-        $imageCount.text(countImages());
+        $imageCount.text(countImages(colors));
+        $sizeValue.text(size);
 
-        var roundedStripeCount = $(".progress-bar.rounded > .stripe").length;
-        var squaredStripeCount = $(".progress-bar.squared > .stripe").length;
+        var roundedStripeCount = ((size - 2) * 4) + 2;
+        var squaredStripeCount = size * 4;
+
+        $roundedProgressBar = $(".progress-bar.rounded");
+        $squaredProgressBar = $(".progress-bar.squared");
+        $stripe = $("<div>").addClass("stripe")
+
+        $roundedProgressBar.empty();
+        for (var i = 0; i < roundedStripeCount; i++) {
+          $roundedProgressBar.append($stripe.clone());
+        }
+
+        $squaredProgressBar.empty();
+        for (var i = 0; i < squaredStripeCount; i++) {
+          $squaredProgressBar.append($stripe.clone());
+        }
 
         var total = colors.reduce(function(memo, _color, index) {
           return memo + (counts[index] || 0);
@@ -292,6 +209,7 @@ e1e4e8</textarea>
       refresh();
       $colors.on("input change", refresh);
       $counts.on("input change", refresh);
+      $size.on("input change", refresh);
     </script>
   </body>
 </html>
