@@ -58,5 +58,20 @@ class SlackProgressBar
     end
 
     attr_writer :default_letter
+
+    def qr_code_content
+      return @qr_code_content if @qr_code_content
+
+      used_keys = letters.keys & colors.keys
+      used_colors = used_keys.map { |key| colors.fetch(key) }
+      used_letters = used_keys.map { |key| letters.fetch(key) }
+
+      @qr_code_content = [
+        used_colors.join("+"),
+        used_letters.join("+"),
+        prefix.bytes.join("+"),
+        separator.bytes.join("+"),
+      ].join("/").upcase
+    end
   end
 end
