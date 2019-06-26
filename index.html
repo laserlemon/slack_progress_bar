@@ -53,20 +53,46 @@
             <label for="colors" class="text-normal">Add 6-digit hex colors and their individual progress below:</label>
           </div>
           <div class="pb-2">
-            <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8">6f42c1
+            <table>
+              <thead>
+                <tr>
+                  <th class="text-left px-2">Letters</th>
+                  <th class="text-left px-2">Colors</th>
+                  <th class="text-left px-2">Counts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <textarea class="js-letters form-control text-mono mr-2" cols="4" rows="8">p
+b
+g
+y
+o
+r
+w</textarea>
+                  </td>
+                  <td>
+                    <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8">6f42c1
 0366d6
 28a745
 ffd33d
 f66a0a
 d73a49
 e1e4e8</textarea>
-            <textarea class="js-counts form-control text-mono text-right" cols="4" rows="8">1
+                  </td>
+                  <td>
+                    <textarea class="js-counts form-control text-mono" cols="4" rows="8">1
 1
 2
 3
 5
 8
 13</textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="pb-2">
             <label for="colors" class="text-normal">Change the progress bar size (in emoji) below:</label>
@@ -102,8 +128,7 @@ e1e4e8</textarea>
       <div class="pb-4">
         <h2 class="pb-2">Command</h2>
         <div class="pb-2">
-          Run the following command to generate the <span class="js-image-count"></span> emoji images.
-          You may change the <span class="text-mono bg-gray border rounded-1 p-1 my-n1">--letters</span> to better represent your chosen colors.
+          Run the following command to generate the <span class="js-image-count"></span> emoji images:
         </div>
         <div class="text-mono bg-gray-dark text-white p-3 rounded-2 no-wrap overflow-auto">
           <span class="text-gray-light user-select-none pr-1">$ </span>
@@ -112,9 +137,11 @@ e1e4e8</textarea>
       </div>
     </div>
     <script>
+      const letterPattern = /[a-z]/gm;
       const colorPattern = /[0-9a-f]{6}/gm;
       const countPattern = /[0-9]+/gm;
 
+      const $letters = $(".js-letters");
       const $colors = $(".js-colors");
       const $counts = $(".js-counts");
       const $size = $(".js-size");
@@ -138,6 +165,7 @@ e1e4e8</textarea>
       };
 
       const refresh = function() {
+        var letters = $letters.val().match(letterPattern);
         var colors = $colors.val().match(colorPattern);
         var counts = ($counts.val().match(countPattern) || []).map(count => parseInt(count));
         var size = $size.val();
@@ -170,43 +198,43 @@ e1e4e8</textarea>
         var runningTotal = 0;
         var lastRoundedIndex = 0;
         var lastSquaredIndex = 0;
-        var letters = []
+        var command = "slack_progress_bar generate --colors"
 
         $(".progress-bar > .stripe").css("background", "none");
 
-        colors.forEach(function(color, index) {
+        letters.forEach(function(letter, index) {
+          var color = colors[index];
           var count = counts[index];
 
-          if (count && color) {
-            runningTotal = runningTotal + count;
+          if (letter && color) {
+            command = command + " " + letter + ":" + color;
 
-            var roundedIndex = Math.floor(runningTotal / total * roundedStripeCount);
-            var squaredIndex = Math.floor(runningTotal / total * squaredStripeCount);
+            if (count) {
+              runningTotal = runningTotal + count;
 
-            if (roundedIndex > lastRoundedIndex) {
-              $(".progress-bar.rounded > .stripe").slice(lastRoundedIndex, roundedIndex).css("background", "#" + color);
+              var roundedIndex = Math.floor(runningTotal / total * roundedStripeCount);
+              var squaredIndex = Math.floor(runningTotal / total * squaredStripeCount);
+
+              if (roundedIndex > lastRoundedIndex) {
+                $(".progress-bar.rounded > .stripe").slice(lastRoundedIndex, roundedIndex).css("background", "#" + color);
+              }
+
+              if (squaredIndex > lastSquaredIndex) {
+                $(".progress-bar.squared > .stripe").slice(lastSquaredIndex, squaredIndex).css("background", "#" + color);
+              }
+
+              lastRoundedIndex = roundedIndex;
+              lastSquaredIndex = squaredIndex;
             }
-
-            if (squaredIndex > lastSquaredIndex) {
-              $(".progress-bar.squared > .stripe").slice(lastSquaredIndex, squaredIndex).css("background", "#" + color);
-            }
-
-            lastRoundedIndex = roundedIndex;
-            lastSquaredIndex = squaredIndex;
           }
-
-          letters.push(String.fromCharCode(index + 97));
         });
-
-        var command = "slack_progress_bar generate --colors=" +
-          colors.join(",") +
-          " --letters=" +
-          letters.join(",")
 
         $command.text(command);
       };
 
       refresh();
+
+      $letters.on("input change", refresh);
       $colors.on("input change", refresh);
       $counts.on("input change", refresh);
       $size.on("input change", refresh);
