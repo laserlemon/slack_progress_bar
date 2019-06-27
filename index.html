@@ -64,31 +64,13 @@
               <tbody>
                 <tr>
                   <td>
-                    <textarea class="js-letters form-control text-mono mr-2" cols="4" rows="8">p
-b
-g
-y
-o
-r
-w</textarea>
+                    <textarea class="js-letters form-control text-mono mr-2" cols="4" rows="8"></textarea>
                   </td>
                   <td>
-                    <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8">6f42c1
-0366d6
-28a745
-ffd33d
-f66a0a
-d73a49
-e1e4e8</textarea>
+                    <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8"></textarea>
                   </td>
                   <td>
-                    <textarea class="js-counts form-control text-mono" cols="4" rows="8">1
-1
-2
-3
-5
-8
-13</textarea>
+                    <textarea class="js-counts form-control text-mono" cols="4" rows="8"></textarea>
                   </td>
                 </tr>
               </tbody>
@@ -230,7 +212,66 @@ e1e4e8</textarea>
         });
 
         $command.text(command);
+
+        var args = [];
+        letters.forEach(function(letter, index) {
+          var color = colors[index];
+          var count = counts[index];
+
+          var arg = letter + "";
+          if (color) {
+            arg = arg + ":" + color;
+            if (count) {
+              arg = arg + ":" + count;
+            }
+          }
+
+          args.push(arg);
+        });
+
+        window.location.replace("#" + args.join("+"));
       };
+
+      var hash = window.location.hash.substr(1);
+
+      if (hash) {
+        var letterValues = [];
+        var colorValues = [];
+        var countValues = [];
+
+        hash.split("+").forEach(function(arg) {
+          var values = arg.split(":");
+          letterValues.push(values[0]);
+          colorValues.push(values[1]);
+          countValues.push(values[2]);
+        });
+
+        if (countValues.length) {
+          if (countValues.every(function(value) { return !value; })) {
+            for (var i = 0; i < countValues.length; i++) {
+              if (i < 2) {
+                countValues.splice(i, 1, 1);
+              } else {
+                var [a, b] = countValues.slice(i - 2, i);
+                countValues.splice(i, 1, a + b);
+              }
+            }
+          } else {
+            for (var i = 0; i < countValues.length; i++) {
+              var countValue = countValues[i] || 0;
+              countValues.splice(i, 1, countValue);
+            }
+          }
+        }
+
+        $letters.val(letterValues.join("\n"));
+        $colors.val(colorValues.join("\n"));
+        $counts.val(countValues.join("\n"));
+      } else {
+        $letters.val("p\nb\ng\ny\no\nr\nw");
+        $colors.val("6f42c1\n0366d6\n28a745\nffd33d\nf66a0a\nd73a49\ne1e4e8");
+        $counts.val("1\n1\n2\n3\n5\n8\n13");
+      }
 
       refresh();
 
