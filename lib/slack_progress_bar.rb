@@ -17,13 +17,16 @@ class SlackProgressBar
 
   # Create a new progress bar.
   #
-  # The "counts" argument is a hash of symbol keys and integer values. Only keys
-  # present in SlackProgressBar.config.letters will be rendered in the resulting
-  # progress bar. If not provided, it's assumed that no progress has been made.
+  # The "counts" argument is a hash of string or symbol keys and integer values.
+  # Only keys present in either config.letters or config.aliases will be
+  # rendered in the resulting progress bar. If not provided, it's assumed that
+  # no progress has been made.
   #
   # The "total" argument is optional, defaulting to the sum of all provided
   # counts. If a total is provided that is greater than the sum of the counts,
   # the last configured color will be used to fill in the remainder of the bar.
+  # If a total is provided that is less than the sum of the counts provided, the
+  # greater value will be used to render the progress bar.
   #
   # The "size" argument specifies how many emoji will be used to render the
   # progress bar. The default is 14 because the default progress bar has rounded

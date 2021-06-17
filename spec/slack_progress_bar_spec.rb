@@ -82,4 +82,10 @@ RSpec.describe SlackProgressBar do
 
     expect(bar.to_s).to eq(":pb-g-a::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
   end
+
+  it "shows a custom sized progress bar" do
+    bar = SlackProgressBar.new(counts: { green: 1 }, total: 2, size: 4)
+
+    expect(bar.to_s).to eq(":pb-g-a::pb-gggg::pb-wwww::pb-w-z:")
+  end
 end
