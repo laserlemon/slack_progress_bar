@@ -107,7 +107,8 @@ class SlackProgressBar
     running_total = 0
 
     config.letters.each do |letter|
-      next unless count = counts[letter]
+      count = counts[letter]
+      next unless count
 
       running_total += count
       running_stripes = (running_total.to_f / effective_total * stripes).floor
