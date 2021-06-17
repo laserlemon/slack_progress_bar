@@ -90,11 +90,11 @@ class SlackProgressBar
     emoji = +""
 
     letters.scan(/[a-z]{1,4}/) do |group|
-      emoji << group.
-        prepend(config.prefix, config.separator).
-        tap { |s| s.concat(config.separator, suffix) if suffix }.
-        prepend(":").
-        concat(":")
+      emoji << group
+        .prepend(config.prefix, config.separator)
+        .tap { |s| s.concat(config.separator, suffix) if suffix }
+        .prepend(":")
+        .concat(":")
     end
 
     emoji

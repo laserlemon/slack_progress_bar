@@ -8,14 +8,6 @@
 
 # Offense count: 4
 # Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: leading, trailing
-Layout/DotPosition:
-  Exclude:
-    - 'lib/slack_progress_bar.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
 # SupportedStyles: aligned, indented, indented_relative_to_receiver
 Layout/MultilineMethodCallIndentation:
