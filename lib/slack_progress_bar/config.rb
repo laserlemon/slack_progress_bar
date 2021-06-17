@@ -15,6 +15,9 @@ class SlackProgressBar
     LETTER_PATTERN = %r{\A[a-z]\z}
 
     SEPARATOR = "-"
+    LEFT_CAP_SUFFIX = "a"
+    RIGHT_CAP_SUFFIX = "z"
+    CIRCLE_SUFFIX = "o"
 
     attr_accessor :prefix, :letters
 
@@ -68,6 +71,18 @@ class SlackProgressBar
 
     def separator
       SEPARATOR
+    end
+
+    def left_cap_suffix
+      LEFT_CAP_SUFFIX
+    end
+
+    def right_cap_suffix
+      RIGHT_CAP_SUFFIX
+    end
+
+    def circle_suffix
+      CIRCLE_SUFFIX
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "slack_progress_bar/config"
 require "slack_progress_bar/version"
 
@@ -35,7 +37,7 @@ class SlackProgressBar
   # the whitespace on either side of the progress bar since the rounded end
   # emoji images are mostly negative space.
   def initialize(counts: {}, total: counts.values.sum, size: 14, rounded: true)
-    @counts = counts.slice(*config.letters.keys)
+    @counts = counts.slice(*config.letters)
     @total = total
     @size = size
     @rounded = rounded
@@ -58,7 +60,7 @@ class SlackProgressBar
   def emoji
     return @emoji if @emoji
 
-    emoji = String.new
+    emoji = +""
 
     if rounded?
       emoji << emojify(letters.slice(0), suffix: "a")
@@ -72,12 +74,10 @@ class SlackProgressBar
   end
 
   def emojify(letters, suffix: nil)
-    emoji = String.new
+    emoji = +""
 
     letters.scan(/[a-z]{1,4}/) do |group|
       emoji << group.
-        gsub(/([a-z])\1+/) { |match| "#{match[0]}#{match.size}" }.
-        sub(/\d\z/, "").
         prepend(config.prefix, config.separator).
         tap { |s| s.concat(config.separator, suffix) if suffix }.
         prepend(":").
@@ -90,11 +90,11 @@ class SlackProgressBar
   def letters
     return @letters if @letters
 
-    letters = String.new
+    letters = +""
     running_total = 0
 
-    config.letters.each do |key, letter|
-      next unless count = counts[key]
+    config.letters.each do |letter|
+      next unless count = counts[letter]
 
       running_total += count
       running_stripes = (running_total.to_f / effective_total * stripes).floor
