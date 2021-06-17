@@ -58,4 +58,10 @@ RSpec.describe SlackProgressBar do
 
     expect(bar.to_s).to eq(":pb-b-a::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-g-z:")
   end
+
+  it "ignores unknown letters" do
+    bar = SlackProgressBar.new(counts: { "q" => 1 }, total: 2)
+
+    expect(bar.to_s).to eq(":pb-w-a::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
+  end
 end
