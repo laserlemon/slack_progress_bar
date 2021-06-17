@@ -2,76 +2,72 @@
 
 class SlackProgressBar
   class Config
-    # The "colors" configuration is only used for the one-time process of
-    # generating custom Slack emoji images. Images will only be generated for a
-    # given color if the key exists in both the colors and letters
-    # configurations.
-    #
-    # The hex values below were borrowed from GitHub's Primer color system.
-    # See: https://primer.style/css/support/color-system
-    DEFAULT_COLORS = {
-      # purple: "6f42c1",
-      blue:   "0366d6",
-      green:  "28a745",
-      yellow: "ffd33d",
-      # orange: "f66a0a",
-      red:    "d73a49",
-      white:  "e1e4e8",
-    }.freeze
+    InvalidConfigError = Class.new(StandardError)
 
-    # Both the keys and the values of the "letters" configuration must be
-    # unique. Each value must be a single character, a-z. These letters are used
-    # any time a progress bar is displayed as well as when the custom Slack
-    # emoji images are generated. Your letters configuration should match (or be
-    # a subset of) what was used when generating the custom emoji images for
-    # your Slack workspace.
-    #
-    # Order is important here. Colors in your progress bar will always appear in
-    # the same order as your letters configuration.
-    DEFAULT_LETTERS = {
-      # purple: "p",
-      blue:   "b",
-      green:  "g",
-      yellow: "y",
-      # orange: "o",
-      red:    "r",
-      white:  "w",
-    }.freeze
+    DEFAULT_PREFIX = "pb"
 
-    DEFAULT_PREFIX    = "pb".freeze
-    DEFAULT_SEPARATOR = "_".freeze
+    # The default letters stand for: purple, blue, green, yellow, orange, red,
+    # and white. See SlackProgressBar::Generator::DEFAULT_COLORS for more
+    # information.
+    DEFAULT_LETTERS = %w[ p b g y o r w ].freeze
 
-    attr_accessor :colors
-    attr_accessor :letters
-    attr_accessor :prefix
-    attr_accessor :separator
+    PREFIX_PATTERN = %r{\A[0-9a-z]+\z}
+    LETTER_PATTERN = %r{\A[a-z]\z}
+
+    SEPARATOR = "-"
+
+    attr_accessor :prefix, :letters
 
     def initialize
-      @colors    = DEFAULT_COLORS
-      @letters   = DEFAULT_LETTERS
-      @prefix    = DEFAULT_PREFIX
-      @separator = DEFAULT_SEPARATOR
+      @prefix = DEFAULT_PREFIX
+      @letters = DEFAULT_LETTERS
+    end
+
+    def validate!
+      unless prefix.is_a?(String)
+        raise InvalidConfigError, "The prefix must be a String. Found: #{prefix.class.name}"
+      end
+
+      unless PREFIX_PATTERN.match?(prefix)
+        raise InvalidConfigError, "The prefix must only contain digits 0-9 and/or lowercase letters a-z. Found: #{prefix.inspect}"
+      end
+
+      unless letters.is_a?(Array)
+        raise InvalidConfigError, "Configured letters must be an Array. Found: #{letter.class.name}"
+      end
+
+      case letters.size
+      when 0
+        raise InvalidConfigError, "Provide at least two letters."
+      when 1
+        raise InvalidConfigError, "Provide at least two letters. The last letter will be used as the default."
+      end
+
+      unless letters.uniq.size == letters.size
+        raise InvalidConfigError, "Configured letters must be unique."
+      end
+
+      letters.each do |letter|
+        unless LETTER_PATTERN.match?(letter)
+          raise InvalidConfigError, "The only valid letters are lowercase a-z. Found: #{letter.inspect}"
+        end
+      end
+    end
+
+    def valid?
+      validate!
+    rescue InvalidConfigError
+      false
+    else
+      true
     end
 
     def default_letter
-      @default_letter ||= letters.values.last
+      letters.last
     end
 
-    attr_writer :default_letter
-
-    def qr_code_content
-      return @qr_code_content if @qr_code_content
-
-      used_keys = letters.keys & colors.keys
-      used_colors = used_keys.map { |key| colors.fetch(key) }
-      used_letters = used_keys.map { |key| letters.fetch(key) }
-
-      @qr_code_content = [
-        used_colors.join("+"),
-        used_letters.join("+"),
-        prefix.bytes.join("+"),
-        separator.bytes.join("+"),
-      ].join("/").upcase
+    def separator
+      SEPARATOR
     end
   end
 end

@@ -7,7 +7,8 @@ class SlackProgressBar
   end
 
   def self.configure
-    yield config if block_given?
+    yield config
+    config.validate!
   end
 
   attr_reader :counts, :total, :size
