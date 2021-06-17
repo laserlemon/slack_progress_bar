@@ -11,3 +11,6 @@ Layout/ArgumentAlignment:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+
+Metrics:
+  Enabled: false
