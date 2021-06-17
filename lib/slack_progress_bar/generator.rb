@@ -9,6 +9,9 @@ class SlackProgressBar
     ImageMagickError = Class.new(Error)
     ImageMagickMissingError = Class.new(ImageMagickError)
     ImageMagickOutdatedError = Class.new(ImageMagickError)
+    OutputError = Class.new(Error)
+    OutputMissingError = Class.new(OutputError)
+    OutputNotWritableError = Class.new(OutputError)
 
     # The order in which these colors are configured is important; they will
     # appear in the same order in a rendered progress bar.
@@ -25,13 +28,16 @@ class SlackProgressBar
       "w" => "e1e4e8", # white
     }.freeze
 
+    DEFAULT_OUTPUT = "images"
+
     IMAGE_MAGICK_VERSION_PATTERN = %r{Version: ImageMagick (?<major_version>\d+)\.[^\s]+}
 
-    attr_reader :colors, :prefix, :config
+    attr_reader :colors, :prefix, :output
 
-    def initialize(colors: DEFAULT_COLORS, prefix: config.prefix)
+    def initialize(colors: DEFAULT_COLORS, prefix: config.prefix, output: DEFAULT_OUTPUT)
       @colors = colors
       @prefix = prefix
+      @output = output
     end
 
     def config
@@ -40,6 +46,7 @@ class SlackProgressBar
 
     def generate
       check_image_magick!
+      check_output!
 
       generate_left_caps
       generate_right_caps
@@ -60,7 +67,7 @@ class SlackProgressBar
     end
 
     def image_output_path(name)
-      "#{name}.png"
+      File.join(output, "#{name}.png")
     end
 
     def check_image_magick!
@@ -81,6 +88,18 @@ class SlackProgressBar
         Please be sure that ImageMagick is installed, the "convert" command is
         available, and your PATH is configured to find the "convert" command.
         ERR
+    end
+
+    def check_output!
+      unless File.directory?(output)
+        raise OutputMissingError,
+          "Output directory #{output.inspect} was not found."
+      end
+
+      unless File.writable?(output)
+        raise OutputNotWritableError,
+          "Output directory #{output.inspect} is not writable."
+      end
     end
 
     def generate_left_caps

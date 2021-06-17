@@ -15,11 +15,15 @@ class SlackProgressBar
     option :prefix,
       type: :string,
       default: defaults.prefix
+    option :output,
+      type: :string,
+      default: defaults.output
 
     def generate
       generator = Generator.new(
         colors: options[:colors],
         prefix: options[:prefix],
+        output: options[:output],
       )
 
       generator.generate
