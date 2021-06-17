@@ -14,3 +14,6 @@ Layout/MultilineMethodCallIndentation:
 
 Metrics:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
