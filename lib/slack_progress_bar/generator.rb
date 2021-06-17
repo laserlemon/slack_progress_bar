@@ -25,16 +25,17 @@ class SlackProgressBar
       "w" => "e1e4e8", # white
     }.freeze
 
-    DEFAULT_PREFIX = "pb".freeze
-
     IMAGE_MAGICK_VERSION_PATTERN = %r{Version: ImageMagick (?<major_version>\d+)\.[^\s]+}
 
     attr_reader :colors, :prefix, :config
 
-    def initialize(colors: DEFAULT_COLORS, prefix: DEFAULT_PREFIX)
+    def initialize(colors: DEFAULT_COLORS, prefix: config.prefix)
       @colors = colors
       @prefix = prefix
-      @config = SlackProgressBar.config
+    end
+
+    def config
+      @config ||= SlackProgressBar.config
     end
 
     def generate
