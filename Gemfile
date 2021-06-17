@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "thor", "~> 0.20.3"
+gem "thor", "~> 1.1"
 
 group :test do
-  gem "rspec", "~> 3.8"
+  gem "rspec", "~> 3.10"
 end
