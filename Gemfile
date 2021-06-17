@@ -4,5 +4,5 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "rubocop", "~> 1.17.0"
 gem "rspec", "~> 3.10"
+gem "rubocop", "~> 1.17.0"
