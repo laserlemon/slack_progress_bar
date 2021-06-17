@@ -21,4 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", ">= 12"
 
   spec.required_ruby_version = ">= 2.6.0"
+
+  spec.bindir = "exe"
+  spec.executables << "slack_progress_bar"
 end
