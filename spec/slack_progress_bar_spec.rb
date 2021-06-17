@@ -60,7 +60,19 @@ RSpec.describe SlackProgressBar do
   end
 
   it "ignores unknown aliases" do
-    bar = SlackProgressBar.new(counts: { bogus: 1 }, total: 2)
+    bar = SlackProgressBar.new(counts: { unknown: 1 }, total: 2)
+
+    expect(bar.to_s).to eq(":pb-w-a::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
+  end
+
+  it "shows progress by letter" do
+    bar = SlackProgressBar.new(counts: { "b" => 1, "g" => 2 }, total: 5)
+
+    expect(bar.to_s).to eq(":pb-b-a::pb-bbbb::pb-bbbb::pb-bggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
+  end
+
+  it "ignores unknown letters" do
+    bar = SlackProgressBar.new(counts: { "u" => 1 }, total: 2)
 
     expect(bar.to_s).to eq(":pb-w-a::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
   end
