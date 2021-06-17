@@ -82,7 +82,7 @@ class SlackProgressBar
           ImageMagick is out of date.
 
           Please upgrade to ImageMagick 7 or later.
-          ERR
+        ERR
       end
     rescue CommandFailedError
       raise ImageMagickMissingError, <<~ERR
@@ -90,7 +90,7 @@ class SlackProgressBar
 
         Please be sure that ImageMagick is installed, the "convert" command is
         available, and your PATH is configured to find the "convert" command.
-        ERR
+      ERR
     end
 
     def check_output!
