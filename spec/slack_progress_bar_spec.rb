@@ -76,4 +76,10 @@ RSpec.describe SlackProgressBar do
 
     expect(bar.to_s).to eq(":pb-w-a::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
   end
+
+  it "combines counts for the same color" do
+    bar = SlackProgressBar.new(counts: { green: 1, "g" => 1 }, total: 4)
+
+    expect(bar.to_s).to eq(":pb-g-a::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:")
+  end
 end
