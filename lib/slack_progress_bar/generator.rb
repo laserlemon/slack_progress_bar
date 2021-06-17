@@ -29,7 +29,7 @@ class SlackProgressBar
       "w" => "e1e4e8", # white
     }.freeze
 
-    DEFAULT_OUTPUT = "images"
+    DEFAULT_OUTPUT = "./"
 
     IMAGE_MAGICK_VERSION_PATTERN = /Version: ImageMagick (?<major_version>\d+)\.[^\s]+/.freeze
 
@@ -48,8 +48,6 @@ class SlackProgressBar
     def generate
       check_image_magick!
       check_output!
-
-      clear_output
 
       generate_left_caps
       generate_right_caps
@@ -105,10 +103,6 @@ class SlackProgressBar
       end
 
       true
-    end
-
-    def clear_output
-      FileUtils.rm(Dir.glob(image_output_path("*")))
     end
 
     def generate_left_caps

@@ -11,6 +11,3 @@
 .rspec_status
 
 Gemfile.lock
-
-# Generated images
-/images/*.png
