@@ -37,10 +37,20 @@ class SlackProgressBar
   # the whitespace on either side of the progress bar since the rounded end
   # emoji images are mostly negative space.
   def initialize(counts: {}, total: counts.values.sum, size: 14, rounded: true)
-    @counts = counts.slice(*config.letters)
+    @counts = {}
     @total = total
     @size = size
     @rounded = rounded
+
+    counts.each do |key, count|
+      letter =
+        case key
+        when *config.letters then key
+        when *config.aliases.keys then config.aliases.fetch(key)
+        end
+      @counts[letter] ||= 0
+      @counts[letter] += count
+    end
   end
 
   def to_s

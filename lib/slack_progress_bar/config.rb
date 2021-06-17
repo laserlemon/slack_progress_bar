@@ -11,6 +11,16 @@ class SlackProgressBar
     # information.
     DEFAULT_LETTERS = %w[ p b g y o r w ].freeze
 
+    DEFAULT_ALIASES = {
+      purple: "p",
+      blue: "b",
+      green: "g",
+      yellow: "y",
+      orange: "o",
+      red: "r",
+      white: "w",
+    }.freeze
+
     PREFIX_PATTERN = %r{\A[0-9a-z]+\z}
     LETTER_PATTERN = %r{\A[a-z]\z}
 
@@ -19,16 +29,17 @@ class SlackProgressBar
     RIGHT_CAP_SUFFIX = "z"
     CIRCLE_SUFFIX = "o"
 
-    attr_accessor :prefix, :letters
+    attr_accessor :prefix, :letters, :aliases
 
     def initialize
       @prefix = DEFAULT_PREFIX
       @letters = DEFAULT_LETTERS
+      @aliases = DEFAULT_ALIASES
     end
 
     def validate!
       unless prefix.is_a?(String)
-        raise InvalidConfigError, "The prefix must be a String. Found: #{prefix.class.name}"
+        raise InvalidConfigError, "The prefix must be a String. Found #{prefix.class.name}: #{prefix.inspect}"
       end
 
       unless PREFIX_PATTERN.match?(prefix)
@@ -36,7 +47,7 @@ class SlackProgressBar
       end
 
       unless letters.is_a?(Array)
-        raise InvalidConfigError, "Configured letters must be an Array. Found: #{letter.class.name}"
+        raise InvalidConfigError, "Configured letters must be an Array. Found #{letters.class.name}: #{letters.inspect}"
       end
 
       case letters.size
@@ -51,8 +62,30 @@ class SlackProgressBar
       end
 
       letters.each do |letter|
+        unless letter.is_a?(String)
+          raise InvalidConfigError, "Every letter must be a String. Found #{letter.class.name}: #{letter.inspect}"
+        end
+
         unless LETTER_PATTERN.match?(letter)
           raise InvalidConfigError, "The only valid letters are lowercase a-z. Found: #{letter.inspect}"
+        end
+      end
+
+      unless aliases.is_a?(Hash)
+        raise InvalidConfigError, "Configured aliases must be a Hash. Found #{aliases.class.name}: #{aliases.inspect}"
+      end
+
+      aliases.each do |name, letter|
+        unless name.is_a?(Symbol)
+          raise InvalidConfigError, "Every alias must have a Symbol name. Found #{name.class.name}: #{name.inspect}"
+        end
+
+        unless letter.is_a?(String)
+          raise InvalidConfigError, "Every alias must point to a String letter. Found #{letter.class.name}: #{letter.inspect}"
+        end
+
+        unless letters.include?(letter)
+          raise InvalidConfigError, "Every alias must point to a valid letter. Found: #{letter.inspect}"
         end
       end
     end
