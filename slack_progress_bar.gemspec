@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
 
   spec.files = Dir.chdir(__dir__) do
-    `git ls-files -z`.split("\x0").grep_v(/\A(bin|spec)/)
+    `git ls-files -z`.split("\x0").grep_v(/\A(bin|spec|Rakefile)/)
   end
 
   spec.add_runtime_dependency "thor", "~> 1.0"
