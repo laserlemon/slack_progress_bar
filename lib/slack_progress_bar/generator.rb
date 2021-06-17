@@ -31,7 +31,7 @@ class SlackProgressBar
 
     DEFAULT_OUTPUT = "images"
 
-    IMAGE_MAGICK_VERSION_PATTERN = %r{Version: ImageMagick (?<major_version>\d+)\.[^\s]+}
+    IMAGE_MAGICK_VERSION_PATTERN = /Version: ImageMagick (?<major_version>\d+)\.[^\s]+/.freeze
 
     attr_reader :colors, :prefix, :output
 
