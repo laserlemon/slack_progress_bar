@@ -9,7 +9,7 @@ class SlackProgressBar
     # The default letters stand for: purple, blue, green, yellow, orange, red,
     # and white. See SlackProgressBar::Generator::DEFAULT_COLORS for more
     # information.
-    DEFAULT_LETTERS = %w[ p b g y o r w ].freeze
+    DEFAULT_LETTERS = %w[p b g y o r w].freeze
 
     DEFAULT_ALIASES = {
       purple: "p",
