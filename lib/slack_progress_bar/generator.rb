@@ -110,33 +110,50 @@ class SlackProgressBar
     end
 
     def generate_left_caps
+      puts "Generating left caps"
+
       colors.each do |letter, color|
         name = [prefix, letter, config.left_cap_suffix].join(config.separator)
         path = image_output_path(name)
 
+        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 127.5,63.5 circle 0,0 0,39.5" #{path}))
       end
+
+      puts
     end
 
     def generate_right_caps
+      puts "Generating right caps"
+
       colors.each do |letter, color|
         name = [prefix, letter, config.right_cap_suffix].join(config.separator)
         path = image_output_path(name)
 
+        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 0,63.5 circle 0,0 0,39.5" #{path}))
       end
+
+      puts
     end
 
     def generate_circles
+      puts "Generating circles"
+
       colors.each do |letter, color|
         name = [prefix, letter, config.circle_suffix].join(config.separator)
         path = image_output_path(name)
 
+        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 63.5,63.5 circle 0,0 0,39.5" #{path}))
       end
+
+      puts
     end
 
     def generate_stripes
+      puts "Generating stripes"
+
       colors.keys.repeated_combination(4).each do |four_letters|
         four_colors = four_letters.map { |letter| colors.fetch(letter) }
 
@@ -152,8 +169,11 @@ class SlackProgressBar
         path = image_output_path(name)
         command << %( #{path})
 
+        print "."
         run_command(command)
       end
+
+      puts
     end
   end
 end
