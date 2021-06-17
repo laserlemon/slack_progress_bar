@@ -62,11 +62,9 @@ class SlackProgressBar
     def run_command(command)
       output, status = Open3.capture2e(command)
 
-      if status.success?
-        output
-      else
-        raise CommandError, output
-      end
+      raise CommandError, output unless status.success?
+
+      output
     end
 
     def image_output_path(name)
@@ -84,6 +82,8 @@ class SlackProgressBar
           Please upgrade to ImageMagick 7 or later.
         ERR
       end
+
+      true
     rescue CommandFailedError
       raise ImageMagickMissingError, <<~ERR
         ImageMagick's "convert" command was not found.
@@ -103,6 +103,8 @@ class SlackProgressBar
         raise OutputNotWritableError,
           "Output directory #{output.inspect} is not writable."
       end
+
+      true
     end
 
     def clear_output
