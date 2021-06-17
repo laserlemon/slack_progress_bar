@@ -15,6 +15,8 @@ Gem::Specification.new do |spec|
     `git ls-files -z`.split("\x0").grep_v(/\A(bin|spec)/)
   end
 
+  spec.add_runtime_dependency "thor", "~> 1.0"
+
   spec.add_development_dependency "bundler", ">= 2"
   spec.add_development_dependency "rake", ">= 12"
 end
