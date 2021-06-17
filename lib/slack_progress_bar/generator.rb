@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "open3"
+require "fileutils"
 
 class SlackProgressBar
   class Generator
@@ -47,6 +48,8 @@ class SlackProgressBar
     def generate
       check_image_magick!
       check_output!
+
+      clear_output
 
       generate_left_caps
       generate_right_caps
@@ -100,6 +103,10 @@ class SlackProgressBar
         raise OutputNotWritableError,
           "Output directory #{output.inspect} is not writable."
       end
+    end
+
+    def clear_output
+      FileUtils.rm(Dir.glob(image_output_path("*")))
     end
 
     def generate_left_caps
