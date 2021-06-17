@@ -1,7 +1,6 @@
-lib = File.expand_path("lib", __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+# frozen_string_literal: true
 
-require "slack_progress_bar/version"
+require_relative "lib/slack_progress_bar/version"
 
 Gem::Specification.new do |spec|
   spec.name    = "slack_progress_bar"
