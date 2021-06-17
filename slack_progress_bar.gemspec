@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.bindir = "exe"
-  spec.executables << "slack_progress_bar"
+  spec.executables = ["slack_progress_bar"]
 end
