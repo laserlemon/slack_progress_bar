@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require "slack_progress_bar"
+
 require "open3"
 require "fileutils"
+require "rqrcode"
 
 class SlackProgressBar
   class Generator
@@ -53,6 +56,7 @@ class SlackProgressBar
       generate_right_caps
       generate_circles
       generate_stripes
+      generate_qr_code
     end
 
     private
@@ -170,6 +174,32 @@ class SlackProgressBar
       end
 
       puts
+    end
+
+    def generate_qr_code
+      puts "Generating QR code"
+
+      count = 1
+      previous_count = 0
+      configs = []
+
+      colors.each do |letter, color|
+        configs << "#{letter}:#{color}:#{count}"
+
+        count_to_add = previous_count
+        previous_count = count
+        count += count_to_add
+      end
+
+      anchor = configs.join("+")
+      url = "https://laserlemon.github.io/slack_progress_bar/##{anchor}"
+      qr = RQRCode::QRCode.new(url)
+
+      name = "#{prefix}#{config.separator}qr"
+      path = image_output_path(name)
+      File.open(path, "w") { |f| f.write(qr.as_png(level: :l)) }
+
+      puts "."
     end
   end
 end
