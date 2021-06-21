@@ -202,7 +202,10 @@ class SlackProgressBar
       name = "#{prefix}#{config.separator}qr"
       path = image_output_path(name)
 
-      IO.binwrite(path, qr.as_png(border_modules: 0, size: 128))
+      IO.binwrite(path, qr.as_png(
+        border_modules: 0,
+        resize_exactly_to: 128,
+      ))
       puts "."
     end
   end
