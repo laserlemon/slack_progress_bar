@@ -165,7 +165,7 @@ class SlackProgressBar
 
         four_colors.each_with_index do |color, i|
           x1 = i * 32
-          x2 = x1 + 32
+          x2 = x1 + 31
           command << %( -fill "##{color}" -draw "rectangle #{x1},24 #{x2},103")
         end
 
