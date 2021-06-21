@@ -16,6 +16,15 @@ Layout/MultilineMethodCallIndentation:
 Metrics:
   Enabled: false
 
+Naming/RescuedExceptionsVariableName:
+  Enabled: true
+  PreferredName: error
+
+Style/BlockDelimiters:
+  Enabled: true
+  Exclude:
+    - "spec/**/*_spec.rb"
+
 Style/Documentation:
   Enabled: false
 

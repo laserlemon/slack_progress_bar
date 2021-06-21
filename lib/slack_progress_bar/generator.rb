@@ -74,7 +74,7 @@ class SlackProgressBar
     end
 
     def check_image_magick!
-      output = run_command("convert --version")
+      output = run_command("convert -version")
       major_version = output.slice(IMAGE_MAGICK_VERSION_PATTERN, :major_version).to_i
 
       if major_version < 7
