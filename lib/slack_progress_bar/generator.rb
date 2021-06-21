@@ -21,14 +21,18 @@ class SlackProgressBar
     #
     # The default colors below were borrowed from GitHub's Primer color system.
     # See: https://primer.style/css/support/color-system
+    #
+    # Each color consists of a six hex digits describing the RGB color and two
+    # additional hex digits to describe the color's transparency. "00" is fully
+    # transparent and "ff" is fully opaque.
     DEFAULT_COLORS = {
-      "p" => "6f42c1", # purple
-      "b" => "0366d6", # blue
-      "g" => "28a745", # green
-      "y" => "ffd33d", # yellow
-      "o" => "f66a0a", # orange
-      "r" => "d73a49", # red
-      "w" => "e1e4e8", # white
+      "p" => "6f42c1ff", # purple
+      "b" => "0366d6ff", # blue
+      "g" => "28a745ff", # green
+      "y" => "ffd33dff", # yellow
+      "o" => "f66a0aff", # orange
+      "r" => "d73a49ff", # red
+      "w" => "959da544", # white
     }.freeze
 
     DEFAULT_OUTPUT = "./"
