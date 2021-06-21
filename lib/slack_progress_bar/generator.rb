@@ -2,8 +2,8 @@
 
 require "slack_progress_bar"
 
-require "open3"
 require "fileutils"
+require "open3"
 require "rqrcode"
 
 class SlackProgressBar

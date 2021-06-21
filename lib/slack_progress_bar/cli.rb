@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "slack_progress_bar"
 require "slack_progress_bar/generator"
 
 require "thor"
