@@ -34,6 +34,7 @@ class SlackProgressBar
     DEFAULT_OUTPUT = "./"
 
     IMAGE_MAGICK_VERSION_PATTERN = /Version: ImageMagick (?<major_version>\d+)\.[^\s]+/.freeze
+    MINIMUM_IMAGE_MAGICK_MAJOR_VERSION = 6
 
     attr_reader :colors, :prefix, :output
 
@@ -76,11 +77,11 @@ class SlackProgressBar
       output = run_command("convert -version")
       major_version = output.slice(IMAGE_MAGICK_VERSION_PATTERN, :major_version).to_i
 
-      if major_version < 7
+      if major_version < MINIMUM_IMAGE_MAGICK_MAJOR_VERSION
         raise ImageMagickOutdatedError, <<~ERR
           ImageMagick is out of date.
 
-          Please upgrade to ImageMagick 7 or later.
+          Please upgrade to ImageMagick #{MINIMUM_IMAGE_MAGICK_MAJOR_VERSION} or later.
         ERR
       end
 
