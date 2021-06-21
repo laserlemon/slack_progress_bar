@@ -2,7 +2,6 @@
 
 require "slack_progress_bar"
 
-require "fileutils"
 require "open3"
 require "rqrcode"
 
@@ -116,8 +115,8 @@ class SlackProgressBar
         name = [prefix, letter, config.left_cap_suffix].join(config.separator)
         path = image_output_path(name)
 
-        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 127.5,63.5 circle 0,0 0,39.5" #{path}))
+        print "."
       end
 
       puts
@@ -130,8 +129,8 @@ class SlackProgressBar
         name = [prefix, letter, config.right_cap_suffix].join(config.separator)
         path = image_output_path(name)
 
-        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 0,63.5 circle 0,0 0,39.5" #{path}))
+        print "."
       end
 
       puts
@@ -144,8 +143,8 @@ class SlackProgressBar
         name = [prefix, letter, config.circle_suffix].join(config.separator)
         path = image_output_path(name)
 
-        print "."
         run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 63.5,63.5 circle 0,0 0,39.5" #{path}))
+        print "."
       end
 
       puts
@@ -169,8 +168,8 @@ class SlackProgressBar
         path = image_output_path(name)
         command << %( #{path})
 
-        print "."
         run_command(command)
+        print "."
       end
 
       puts
@@ -193,12 +192,12 @@ class SlackProgressBar
 
       anchor = configs.join("+")
       url = "https://laserlemon.github.io/slack_progress_bar/##{anchor}"
-      qr = RQRCode::QRCode.new(url)
+      qr = RQRCode::QRCode.new(url, level: :l)
 
       name = "#{prefix}#{config.separator}qr"
       path = image_output_path(name)
-      File.open(path, "w") { |f| f.write(qr.as_png(level: :l)) }
 
+      IO.binwrite(path, qr.as_png(border_modules: 0, size: 128))
       puts "."
     end
   end
