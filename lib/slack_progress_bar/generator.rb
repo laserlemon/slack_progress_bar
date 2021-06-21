@@ -134,7 +134,7 @@ class SlackProgressBar
         name = [prefix, letter, config.right_cap_suffix].join(config.separator)
         path = image_output_path(name)
 
-        run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate 0,63.5 circle 0,0 0,39.5" #{path}))
+        run_command(%(convert -size 128x128 canvas:transparent -fill "##{color}" -draw "translate -0.5,63.5 circle 0,0 0,39.5" #{path}))
         print "."
       end
 
