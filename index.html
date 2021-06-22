@@ -9,12 +9,18 @@
         display: inline-block;
         white-space: nowrap;
         background-image:
-          linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
-          linear-gradient(135deg, #f0f0f0 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-          linear-gradient(135deg, transparent 75%, #f0f0f0 75%);
+          linear-gradient(45deg, #aaaaaa22 25%, transparent 25%),
+          linear-gradient(135deg, #aaaaaa22 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, #aaaaaa22 75%),
+          linear-gradient(135deg, transparent 75%, #aaaaaa22 75%);
         background-size: 8px 8px;
         background-position: 0 0, 4px 0, 4px -4px, 0px 4px;
+      }
+      .progress-bar.light {
+        background-color: #ffffff;
+      }
+      .progress-bar.dark {
+        background-color: #1b1d21;
       }
       .stripe {
         float: left;
@@ -99,12 +105,20 @@
           <span class="js-size-value"></span>
         </div>
         <div class="py-2">
-          <h3>Rounded</h3>
-          <div class="progress-bar rounded clearfix"></div>
+          <h3>Rounded on light</h3>
+          <div class="progress-bar light rounded clearfix"></div>
+        </div>
+        <div class="py-2">
+          <h3>Squared on light</h3>
+          <div class="progress-bar light squared clearfix"></div>
+        </div>
+        <div class="py-2">
+          <h3>Rounded on dark</h3>
+          <div class="progress-bar dark rounded clearfix"></div>
         </div>
         <div>
-          <h3>Squared</h3>
-          <div class="progress-bar squared clearfix"></div>
+          <h3>Squared on dark</h3>
+          <div class="progress-bar dark squared clearfix"></div>
         </div>
       </div>
       <div class="pb-4">
@@ -159,18 +173,18 @@
         var roundedStripeCount = ((size - 2) * 4) + 2;
         var squaredStripeCount = size * 4;
 
-        $roundedProgressBar = $(".progress-bar.rounded");
-        $squaredProgressBar = $(".progress-bar.squared");
+        $roundedProgressBars = $(".progress-bar.rounded");
+        $squaredProgressBars = $(".progress-bar.squared");
         $stripe = $("<div>").addClass("stripe")
 
-        $roundedProgressBar.empty();
+        $roundedProgressBars.empty();
         for (var i = 0; i < roundedStripeCount; i++) {
-          $roundedProgressBar.append($stripe.clone());
+          $roundedProgressBars.append($stripe.clone());
         }
 
-        $squaredProgressBar.empty();
+        $squaredProgressBars.empty();
         for (var i = 0; i < squaredStripeCount; i++) {
-          $squaredProgressBar.append($stripe.clone());
+          $squaredProgressBars.append($stripe.clone());
         }
 
         var total = colors.reduce(function(memo, _color, index) {
@@ -198,11 +212,15 @@
               var squaredIndex = Math.floor(runningTotal / total * squaredStripeCount);
 
               if (roundedIndex > lastRoundedIndex) {
-                $(".progress-bar.rounded > .stripe").slice(lastRoundedIndex, roundedIndex).css("background", "#" + color);
+                $roundedProgressBars.each(function(index, progressBar) {
+                  $(progressBar).find("> .stripe").slice(lastRoundedIndex, roundedIndex).css("background", "#" + color);
+                })
               }
 
               if (squaredIndex > lastSquaredIndex) {
-                $(".progress-bar.squared > .stripe").slice(lastSquaredIndex, squaredIndex).css("background", "#" + color);
+                $squaredProgressBars.each(function(index, progressBar) {
+                  $(progressBar).find("> .stripe").slice(lastSquaredIndex, squaredIndex).css("background", "#" + color);
+                })
               }
 
               lastRoundedIndex = roundedIndex;
