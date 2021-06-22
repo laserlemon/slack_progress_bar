@@ -50,7 +50,7 @@
         <h2 class="pb-2">Configuration</h2>
         <div>
           <div class="pb-2">
-            <label for="colors" class="text-normal">Add 6-digit hex colors and their individual progress below:</label>
+            <label for="colors" class="text-normal">Add 8-digit hex colors and their individual progress below:</label>
           </div>
           <div class="pb-2">
             <table>
@@ -67,7 +67,7 @@
                     <textarea class="js-letters form-control text-mono mr-2" cols="4" rows="8"></textarea>
                   </td>
                   <td>
-                    <textarea class="js-colors form-control text-mono mr-2" cols="6" rows="8"></textarea>
+                    <textarea class="js-colors form-control text-mono mr-2" cols="8" rows="8"></textarea>
                   </td>
                   <td>
                     <textarea class="js-counts form-control text-mono" cols="4" rows="8"></textarea>
@@ -120,7 +120,7 @@
     </div>
     <script>
       const letterPattern = /[a-z]/gm;
-      const colorPattern = /[0-9a-f]{6}/gm;
+      const colorPattern = /[0-9a-f]{8}/gm;
       const countPattern = /[0-9]+/gm;
 
       const $letters = $(".js-letters");
@@ -143,7 +143,7 @@
           count = count * (i + 4) / (i);
         }
 
-        return count;
+        return count + (colors.length * 3) + 1;
       };
 
       const refresh = function() {
@@ -269,7 +269,7 @@
         $counts.val(countValues.join("\n"));
       } else {
         $letters.val("p\nb\ng\ny\no\nr\nw");
-        $colors.val("6f42c1\n0366d6\n28a745\nffd33d\nf66a0a\nd73a49\ne1e4e8");
+        $colors.val("6f42c1ff\n0366d6ff\n28a745ff\nffd33dff\nf66a0aff\nd73a49ff\n959da544");
         $counts.val("1\n1\n2\n3\n5\n8\n13");
       }
 
