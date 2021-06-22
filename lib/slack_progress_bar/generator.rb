@@ -68,7 +68,7 @@ class SlackProgressBar
     def run_command(command)
       output, status = Open3.capture2e(command)
 
-      raise CommandError, output unless status.success?
+      raise CommandFailedError, output unless status.success?
 
       output
     end
