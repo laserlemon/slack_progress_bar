@@ -158,7 +158,7 @@ The default configuration generates 233 images, which need to be uploaded to you
 slack_progress_bar generate --colors r:d73a49ff g:28a745ff b:0366d6ff w:959da544
 ```
 
-The command above, configured for four colors, will generate only 49 images. Use the table below to help determine how many colors you're willing to support:
+The command above, configured for four colors, will generate only 48 images. Use the table below to help determine how many colors you're willing to support:
 
 | Colors | Images |
 | ---:| ---:|
