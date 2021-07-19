@@ -1,4 +1,4 @@
-# Slack Progress Bar<br><img src="https://user-images.githubusercontent.com/34264/125970661-b3229a24-439c-43e5-9108-97f46a2c47a6.png" alt="Progress bar preview" width="404" height="20" aria-hidden="true">
+# Slack Progress Bar<br><img src="https://user-images.githubusercontent.com/34264/125970661-b3229a24-439c-43e5-9108-97f46a2c47a6.png" width="404" aria-hidden="true">
 
 Create _beautiful_ progress bars for Slack using **emoji**!
 
@@ -34,13 +34,13 @@ The library uses default colors based on the [GitHub Primer color system](https:
 
 | Alias | Letter | Hex value | Preview |
 |:--- |:---:|:--- |:---:|
-| `purple` | `p` | `6f42c1ff` | <img src="https://user-images.githubusercontent.com/34264/125973904-b82923e7-9457-4d47-9e38-70c36ab3f07f.png" width="20" height="20"> |
-| `blue` | `b` | `0366d6ff` | <img src="https://user-images.githubusercontent.com/34264/125973900-f3faa84f-d7de-4102-b39e-6e5d12a443ed.png" width="20" height="20"> |
-| `green` | `g` | `28a745ff` | <img src="https://user-images.githubusercontent.com/34264/125973902-74679045-0d94-4b41-81e4-56275207d97d.png" width="20" height="20"> |
-| `yellow` | `y` | `ffd33dff` | <img src="https://user-images.githubusercontent.com/34264/125973907-2d615a1f-1016-40c6-9061-3f6243527869.png" width="20" height="20"> |
-| `orange` | `o` | `f66a0aff` | <img src="https://user-images.githubusercontent.com/34264/125973903-25daa839-16b1-43e8-91a3-7f4a134aa341.png" width="20" height="20"> |
-| `red` | `r` | `d73a49ff` | <img src="https://user-images.githubusercontent.com/34264/125973905-2708f63c-1783-4daf-af23-da115e2612c9.png" width="20" height="20"> |
-| `white` | `w` | `959da544` | <img src="https://user-images.githubusercontent.com/34264/125973906-c2a9dcf2-f009-4aa7-b303-529b7a24aa0f.png" width="20" height="20"> |
+| `purple` | `p` | `6f42c1ff` | <img src="https://user-images.githubusercontent.com/34264/125973904-b82923e7-9457-4d47-9e38-70c36ab3f07f.png" width="20"> |
+| `blue` | `b` | `0366d6ff` | <img src="https://user-images.githubusercontent.com/34264/125973900-f3faa84f-d7de-4102-b39e-6e5d12a443ed.png" width="20"> |
+| `green` | `g` | `28a745ff` | <img src="https://user-images.githubusercontent.com/34264/125973902-74679045-0d94-4b41-81e4-56275207d97d.png" width="20"> |
+| `yellow` | `y` | `ffd33dff` | <img src="https://user-images.githubusercontent.com/34264/125973907-2d615a1f-1016-40c6-9061-3f6243527869.png" width="20"> |
+| `orange` | `o` | `f66a0aff` | <img src="https://user-images.githubusercontent.com/34264/125973903-25daa839-16b1-43e8-91a3-7f4a134aa341.png" width="20"> |
+| `red` | `r` | `d73a49ff` | <img src="https://user-images.githubusercontent.com/34264/125973905-2708f63c-1783-4daf-af23-da115e2612c9.png" width="20"> |
+| `white` | `w` | `959da544` | <img src="https://user-images.githubusercontent.com/34264/125973906-c2a9dcf2-f009-4aa7-b303-529b7a24aa0f.png" width="20"> |
 
 You can configure color naming and sequence in a Rails initializer or any other Ruby configuration file:
 
@@ -87,7 +87,7 @@ puts bar.to_s
 :pb-w-a::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125977880-a36c14e0-3d7c-4891-a94f-0b024e3433a1.png" width="404" height="20">
+<img src="https://user-images.githubusercontent.com/34264/125977880-a36c14e0-3d7c-4891-a94f-0b024e3433a1.png" width="404">
 
 But most folks want to show some, well… progress!
 
@@ -100,7 +100,7 @@ puts bar.to_s
 :pb-b-a::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbbb::pb-gggg::pb-gggg::pb-gggg::pb-gggg::pb-rrrr::pb-rrrr::pb-r-z:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125979277-f59e926c-2fc2-4192-9bc1-6e36b28b6f13.png" width="404" height="20">
+<img src="https://user-images.githubusercontent.com/34264/125979277-f59e926c-2fc2-4192-9bc1-6e36b28b6f13.png" width="404">
 
 And if you want to indicate that progress is not yet finished:
 
@@ -114,7 +114,7 @@ puts bar.to_s
 :pb-b-a::pb-bbbb::pb-bbbb::pb-bbbb::pb-bbgg::pb-gggg::pb-gggg::pb-rrrr::pb-rwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125979830-ccc02bba-a85c-4509-957b-3dd234500448.png" width="404" height="20">
+<img src="https://user-images.githubusercontent.com/34264/125979830-ccc02bba-a85c-4509-957b-3dd234500448.png" width="404">
 
 You can also change the size (in emoji) of the progress bar from its default of 14:
 
@@ -127,7 +127,7 @@ puts bar.to_s
 :pb-b-a::pb-bbbb::pb-bbbb::pb-bggg::pb-gggg::pb-rrrw::pb-wwww::pb-wwww::pb-wwww::pb-w-z:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125980287-0093d19f-0ed8-4558-9765-8d2cde706138.png" width="276" height="20">
+<img src="https://user-images.githubusercontent.com/34264/125980287-0093d19f-0ed8-4558-9765-8d2cde706138.png" width="276">
 
 Finally, you can choose to generate your progress bar with square caps:
 
@@ -140,7 +140,7 @@ puts bar.to_s
 :pb-bbbb::pb-bbbb::pb-bbbb::pb-gggg::pb-gggg::pb-rrrr::pb-wwww::pb-wwww::pb-wwww::pb-wwww:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125980701-f9d8a08c-d19a-424d-9198-f18ecbbd0c8d.png" width="320" height="20">
+<img src="https://user-images.githubusercontent.com/34264/125980701-f9d8a08c-d19a-424d-9198-f18ecbbd0c8d.png" width="320">
 
 ### Generating the emoji
 
@@ -187,20 +187,20 @@ By default, exactly 2%. That's why the default rounded progress bar size is 14 e
 :pb-p-a::pb-bbgg::pb-gyyy::pb-yooo::pb-oooo::pb-orrr::pb-rrrr::pb-rrrr::pb-rwww::pb-wwww::pb-wwww::pb-wwww::pb-wwww::pb-w-z:
 ```
 
-<img src="https://user-images.githubusercontent.com/34264/125985441-823e4c2f-379e-49f6-860a-e3d104bd173a.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985470-67828620-291f-412d-b573-308271dbee5b.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985517-28bb320f-0a58-4477-89f8-4e40a80eee6f.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985564-b383037d-a0e8-4612-86c8-a1d9c8699e3c.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985587-67b4b120-2780-4b5f-be2b-8477c966b71a.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985616-8a121079-1c3e-4870-9df0-396b11cfbb06.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985657-7f778bf3-2483-402c-97ee-72bb226c20de.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985657-7f778bf3-2483-402c-97ee-72bb226c20de.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985681-00ebfc9b-1caf-409f-966e-d2471fbe78ff.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32" height="32">&nbsp;
-<img src="https://user-images.githubusercontent.com/34264/125985743-150c8a04-8a90-4cd0-9da3-8614ef17410f.png" width="32" height="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985441-823e4c2f-379e-49f6-860a-e3d104bd173a.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985470-67828620-291f-412d-b573-308271dbee5b.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985517-28bb320f-0a58-4477-89f8-4e40a80eee6f.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985564-b383037d-a0e8-4612-86c8-a1d9c8699e3c.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985587-67b4b120-2780-4b5f-be2b-8477c966b71a.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985616-8a121079-1c3e-4870-9df0-396b11cfbb06.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985657-7f778bf3-2483-402c-97ee-72bb226c20de.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985657-7f778bf3-2483-402c-97ee-72bb226c20de.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985681-00ebfc9b-1caf-409f-966e-d2471fbe78ff.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985711-afbcff71-f933-4ad3-bc37-e73f5906403b.png" width="32">&nbsp;
+<img src="https://user-images.githubusercontent.com/34264/125985743-150c8a04-8a90-4cd0-9da3-8614ef17410f.png" width="32">&nbsp;
 
 ### Why not use narrow emoji?
 
@@ -210,7 +210,7 @@ When you use a narrow rectangular emoji in Slack, horizontal margins are added s
 
 Sure! Slack's API gives you the ability to [create](https://api.slack.com/messaging/sending) and [update](https://api.slack.com/messaging/modifying) messages. So after you create your initial message with a blank progress bar, you can update that message as frequently as you like with the latest and greatest version of your progress bar.
 
-<img src="https://user-images.githubusercontent.com/34264/125991787-d8c49424-106f-40ea-bf58-985adced4b1b.gif" width="374" height="51">
+<img src="https://user-images.githubusercontent.com/34264/125991787-d8c49424-106f-40ea-bf58-985adced4b1b.gif" width="374">
 
 ### Can I change the color order?
 
@@ -220,8 +220,8 @@ Sadly, no. 😢 In an effort to reduce the number of images you need to generate
 
 Sure, kind of! Setting alpha transparency for your color configuration gives you some control over how your progress bars look in light and dark surroundings. For example, the default "white" color is dimmed using alpha transparency. The effect is a progress bar that's beautiful any time of day _or_ night:
 
-<img src="https://user-images.githubusercontent.com/34264/125987921-3d7ac606-1ad3-4ebc-bf45-123df9b16411.png" width="448" height="32"><br>
-<img src="https://user-images.githubusercontent.com/34264/125987920-491636ad-55a7-4c63-a243-feff09c284e6.png" width="448" height="32">
+<img src="https://user-images.githubusercontent.com/34264/125987921-3d7ac606-1ad3-4ebc-bf45-123df9b16411.png" width="448"><br>
+<img src="https://user-images.githubusercontent.com/34264/125987920-491636ad-55a7-4c63-a243-feff09c284e6.png" width="448">
 
 ### I have a different question!
 
