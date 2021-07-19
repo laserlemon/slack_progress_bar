@@ -152,7 +152,7 @@ For the default configuration, run `slack_progress_bar generate` with no argumen
 slack_progress_bar generate
 ```
 
-The default configuration generates 233 images, which need to be uploaded to your Slack workspace. As of this writing, there is no API available to automate this manual process! 😅 You can reduce the number of images required by reducing the number of colors in your configuration:
+The default configuration generates 232 images, which need to be uploaded to your Slack workspace. As of this writing, there is no API available to automate this manual process! 😅 You can reduce the number of images required by reducing the number of colors in your configuration:
 
 ```bash
 slack_progress_bar generate --colors r:d73a49ff g:28a745ff b:0366d6ff w:959da544
