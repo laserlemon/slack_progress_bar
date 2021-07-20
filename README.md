@@ -4,7 +4,7 @@ Create _beautiful_ progress bars for Slack using **emoji**!
 
 Slack Progress Bar is a Ruby library capable of [generating a progress bar](https://github.com/laserlemon/slack_progress_bar/blob/main/README.md#generating-a-progress-bar) made with Slack emoji. The library can also [generate the emoji](https://github.com/laserlemon/slack_progress_bar/blob/main/README.md#generating-the-emoji) images that you'll need in your Slack workspace.
 
-[Try it out!](https://laserlemon.github.io/slack_progress_bar)
+⭐ [Try it out!](https://laserlemon.github.io/slack_progress_bar)
 
 ## Installation
 
@@ -144,6 +144,8 @@ puts bar.to_s
 
 ### Generating the emoji
 
+⭐ **tl;dr:** If you want to use the default 7-color configuration, you can [download all 232 emoji images](https://github.com/laserlemon/slack_progress_bar/files/6848864/images.zip) (120 KB ZIP).
+
 The observent reader will notice that `SlackProgressBar#to_s` (above) only generates a string. For Slack to render your beautiful progress bar, you'll need to generate and upload beautiful Slack emoji images! The `slack_progress_bar` gem comes with a `slack_progress_bar` command line interface and we'll use the `slack_progress_bar generate` command to create all the images you'll need.
 
 For the default configuration, run `slack_progress_bar generate` with no arguments. Images will be created in your current working directory.
@@ -152,7 +154,9 @@ For the default configuration, run `slack_progress_bar generate` with no argumen
 slack_progress_bar generate
 ```
 
-The default configuration generates 232 images, which need to be uploaded to your Slack workspace. As of this writing, there is no API available to automate this manual process! 😅 You can reduce the number of images required by reducing the number of colors in your configuration:
+The default configuration generates 232 images, which need to be uploaded to your Slack workspace. As of this writing, there is no API available to automate this manual process! 😅
+
+You can reduce the number of images required by reducing the number of colors in your configuration:
 
 ```bash
 slack_progress_bar generate --colors r:d73a49ff g:28a745ff b:0366d6ff w:959da544
@@ -168,10 +172,11 @@ The command above, configured for four colors, will generate only 48 images. Use
 | 5 | 86 |
 | 6 | 145 |
 | 7 | 232 |
+| 8 | 355 |
 
-When generating your images, each color you configure contains eight hex digits. The first six are RGB and the last two are alpha transparency. You can experiment with different colors and progress bar styles below:
+When generating your images, each color you configure contains eight hex digits. The first six are RGB and the last two are alpha transparency.
 
-### 🛠️ [Slack Progress Bar Sandbox](https://laserlemon.github.io/slack_progress_bar)
+⭐ You can experiment with different colors and progress bar styles using the [Slack Progress Bar sandbox](https://laserlemon.github.io/slack_progress_bar).
 
 ## Questions
 
