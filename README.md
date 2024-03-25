@@ -30,7 +30,7 @@ $ gem install slack_progress_bar
 
 ### Configuration
 
-The library uses default colors based on the [GitHub Primer color system](https://primer.style/css/support/color-system) that allow you to hit the ground running without any in-app configuration. 
+The library uses default colors based on the [GitHub Primer color system](https://primer.style/css/support/color-system) that allow you to hit the ground running without any in-app configuration.
 
 | Alias | Letter | Hex value | Preview |
 |:--- |:---:|:--- |:---:|
@@ -49,7 +49,7 @@ SlackProgressBar.configure do |config|
   # These one-character color names are used in emoji image filenames.
   # The last color configured here is the default and is used to fill the remainder of a progress bar.
   config.letters = ["r", "g", "b", "w"]
-  
+
   # Define your own aliases that map to each letter above, useful when generating a progress bar.
   config.aliases = {
     red: "r",
@@ -63,7 +63,7 @@ SlackProgressBar.configure do |config|
 end
 ```
 
-The default emoji prefix is `pb`. For example, one Slack emoji using the configuration above could be `:pb-rgbw:`. The separator is `-` and isn't configurable. You can customize the prefix to prevent naming collisions. 
+The default emoji prefix is `pb`. For example, one Slack emoji using the configuration above could be `:pb-rgbw:`. The separator is `-` and isn't configurable. You can customize the prefix to prevent naming collisions.
 
 ```ruby
 SlackProgressBar.configure do |config|
@@ -151,7 +151,7 @@ The observent reader will notice that `SlackProgressBar#to_s` (above) only gener
 For the default configuration, run `slack_progress_bar generate` with no arguments. Images will be created in your current working directory.
 
 ```bash
-slack_progress_bar generate
+bundle exec slack_progress_bar generate
 ```
 
 The default configuration generates 232 images, which need to be uploaded to your Slack workspace. As of this writing, there is no API available to automate this manual process! 😅
@@ -159,7 +159,7 @@ The default configuration generates 232 images, which need to be uploaded to you
 You can reduce the number of images required by reducing the number of colors in your configuration:
 
 ```bash
-slack_progress_bar generate --colors r:d73a49ff g:28a745ff b:0366d6ff w:959da544
+bundle exec slack_progress_bar generate --colors r:d73a49ff g:28a745ff b:0366d6ff w:959da544
 ```
 
 The command above, configured for four colors, will generate only 48 images. Use the table below to help determine how many colors you're willing to support:

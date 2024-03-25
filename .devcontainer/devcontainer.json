@@ -1,0 +1,9 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+  "name": "Slack Progress Bar",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "devcontainer",
+  "postCreateCommand": "bin/setup"
+}
