@@ -30,7 +30,9 @@ $ gem install slack_progress_bar
 
 ### Configuration
 
-The library uses default colors based on the [GitHub Primer color system](https://primer.style/css/support/color-system) that allow you to hit the ground running without any in-app configuration.
+The library uses default colors based on the [GitHub Primer](https://primer.style) color system that allow you to hit the ground running without any in-app configuration.
+
+**UPDATE:** GitHub Primer's colors have changed since this library was originally written, but we're keeping the default colors for consistency.
 
 | Alias | Letter | Hex value | Preview |
 |:--- |:---:|:--- |:---:|
