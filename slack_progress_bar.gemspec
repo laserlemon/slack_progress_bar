@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Generate beautiful progress bars using custom Slack emoji"
 
   spec.author  = "Steve Richert"
-  spec.email   = "steve.richert@gmail.com"
+  spec.email   = "steve.richert@hey.com"
   spec.license = "MIT"
 
   spec.files = Dir.chdir(__dir__) do
