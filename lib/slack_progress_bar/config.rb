@@ -21,8 +21,8 @@ class SlackProgressBar
       white: "w",
     }.freeze
 
-    PREFIX_PATTERN = /\A[0-9a-z]+\z/.freeze
-    LETTER_PATTERN = /\A[a-z]\z/.freeze
+    PREFIX_PATTERN = /\A[0-9a-z]+\z/
+    LETTER_PATTERN = /\A[a-z]\z/
 
     SEPARATOR = "-"
     LEFT_CAP_SUFFIX = "a"

@@ -4,8 +4,8 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "rqrcode", "~> 2.0"
-gem "rspec", "~> 3.10"
-gem "rubocop", "~> 1.17.0"
-gem "rubocop-rake", "~> 0.5.1"
-gem "rubocop-rspec", "~> 2.4.0"
+gem "rqrcode", "~> 2.2.0"
+gem "rspec", "~> 3.13.0"
+gem "rubocop", "~> 1.62.1"
+gem "rubocop-rake", "~> 0.6.0"
+gem "rubocop-rspec", "~> 2.27.1"

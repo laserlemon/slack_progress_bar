@@ -7,7 +7,7 @@ require "tmpdir"
 RSpec.describe SlackProgressBar::Generator do
   it "generates images using default options" do
     Dir.mktmpdir do |output|
-      generator = SlackProgressBar::Generator.new(output: output)
+      generator = described_class.new(output: output)
 
       expect {
         generator.generate

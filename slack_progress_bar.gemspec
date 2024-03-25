@@ -11,6 +11,10 @@ Gem::Specification.new do |spec|
   spec.email   = "steve.richert@hey.com"
   spec.license = "MIT"
 
+  spec.metadata = {
+    "rubygems_mfa_required" => "true",
+  }
+
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").grep_v(/\A(bin|spec|Rakefile)/)
   end
@@ -18,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "thor", "~> 1.0"
 
   spec.add_development_dependency "bundler", ">= 2"
-  spec.add_development_dependency "rake", ">= 12"
+  spec.add_development_dependency "rake", ">= 13"
 
   spec.required_ruby_version = ">= 3.0.0"
 

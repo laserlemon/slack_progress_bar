@@ -37,7 +37,7 @@ class SlackProgressBar
 
     DEFAULT_OUTPUT = "./"
 
-    IMAGE_MAGICK_VERSION_PATTERN = /Version: ImageMagick (?<major_version>\d+)\.[^\s]+/.freeze
+    IMAGE_MAGICK_VERSION_PATTERN = /Version: ImageMagick (?<major_version>\d+)\.[^\s]+/
     MINIMUM_IMAGE_MAGICK_MAJOR_VERSION = 6
 
     attr_reader :colors, :prefix, :output
@@ -202,7 +202,7 @@ class SlackProgressBar
       name = "#{prefix}#{config.separator}qr"
       path = image_output_path(name)
 
-      IO.binwrite(path, qr.as_png(
+      File.binwrite(path, qr.as_png(
         border_modules: 0,
         resize_exactly_to: 128,
       ))
