@@ -20,7 +20,7 @@ class SlackProgressBar
     # appear in the same order in a rendered progress bar.
     #
     # The default colors below were borrowed from GitHub's Primer color system.
-    # See: https://primer.style/css/support/color-system
+    # See: https://primer.style
     #
     # Each color consists of a six hex digits describing the RGB color and two
     # additional hex digits to describe the color's transparency. "00" is fully
