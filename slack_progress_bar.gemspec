@@ -12,10 +12,6 @@ Gem::Specification.new do |spec|
   spec.license  = "MIT"
   spec.homepage = "https://github.com/laserlemon/slack_progress_bar"
 
-  spec.description = <<~DESC
-
-    DESC
-
   spec.metadata = {
     "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/laserlemon/slack_progress_bar",
