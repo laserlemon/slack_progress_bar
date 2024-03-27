@@ -3,21 +3,22 @@
 require_relative "lib/slack_progress_bar/version"
 
 Gem::Specification.new do |spec|
-  spec.name    = "slack_progress_bar"
+  spec.name = "slack_progress_bar"
   spec.summary = "Generate beautiful progress bars using custom Slack emoji"
   spec.version = SlackProgressBar::VERSION
 
-  spec.author   = "Steve Richert"
-  spec.email    = "steve.richert@hey.com"
-  spec.license  = "MIT"
+  spec.author = "Steve Richert"
+  spec.email = "steve.richert@hey.com"
+  spec.license = "MIT"
   spec.homepage = "https://github.com/laserlemon/slack_progress_bar"
 
   spec.metadata = {
-    "rubygems_mfa_required" => "true",
-    "source_code_uri" => "https://github.com/laserlemon/slack_progress_bar",
-    "homepage_uri" => "https://github.com/laserlemon/slack_progress_bar",
+    "allowed_push_host" => "https://rubygems.org",
     "bug_tracker_uri" => "https://github.com/laserlemon/slack_progress_bar/issues",
     "funding_uri" => "https://github.com/sponsors/laserlemon",
+    "homepage_uri" => "https://github.com/laserlemon/slack_progress_bar",
+    "rubygems_mfa_required" => "true",
+    "source_code_uri" => "https://github.com/laserlemon/slack_progress_bar",
   }
 
   spec.required_ruby_version = ">= 3.0.0"
@@ -33,6 +34,7 @@ Gem::Specification.new do |spec|
     "lib/slack_progress_bar/generator.rb",
     "lib/slack_progress_bar/version.rb",
     "LICENSE.txt",
+    "slack_progress_bar.gemspec",
   ]
 
   spec.bindir = "exe"
