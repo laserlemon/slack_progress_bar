@@ -2,6 +2,9 @@
 
 Create _beautiful_ progress bars for Slack using **emoji**!
 
+[![Gem Version](https://img.shields.io/gem/v/slack_progress_bar)](http://rubygems.org/gems/slack_progress_bar)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/laserlemon/slack_progress_bar/rake.yml)](https://github.com/laserlemon/slack_progress_bar/actions/workflows/rake.yml)
+
 Slack Progress Bar is a Ruby library capable of [generating a progress bar](https://github.com/laserlemon/slack_progress_bar/blob/main/README.md#generating-a-progress-bar) made with Slack emoji. The library can also [generate the emoji](https://github.com/laserlemon/slack_progress_bar/blob/main/README.md#generating-the-emoji) images that you'll need in your Slack workspace.
 
 ⭐ [Try it out!](https://laserlemon.github.io/slack_progress_bar)
